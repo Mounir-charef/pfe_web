@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&family=Poppins:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/Contact.css') }}"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <title>Contact</title>
+  </head>
+
+  <body>
+    <header>
+      <!--meme nav bar -->
+      <nav class="horizontal">
+        <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="logo" /></a>
+        <div class="nav_links_horizontal">
+          <ul>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/AI">Description</a></li>
+            <li><a href="/Types">Types</a></li>
+            <li><a href="/researchs">Recherches</a></li>
+            <li><a href="/Contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--
+      container contient les inputs et un h1
+      chaque input a son form
+
+      style pour mettre un petit code css pour bien placer les elements 
+    -->
+    <div class="container" style="text-align: left">
+      <div style="margin-left: 30%">
+        <h1>Veuillez laisser un message</h1>
+        <br />
+        <br />
+      </div>
+
+      <div>
+        <form style="margin-left: 30%">
+          Nom :
+          <input type="text" style="width: 15%" />
+        </form>
+        <br />
+        <form style="margin-left: 30%">
+          Prenom:
+          <input type="text" style="width: 15%" />
+        </form>
+        <br />
+
+        <form style="margin-left: 30%">
+          E-mail:
+          <input type="text" style="width: 15%" />
+        </form>
+
+        <br />
+
+        <div style="display: flex; margin-left: 30%">
+          <p>Message: &nbsp;</p>
+          <textarea name="message" rows="10" style="width: 20%"> </textarea>
+        </div>
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+  </body>
+</html>

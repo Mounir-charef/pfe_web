@@ -1,0 +1,615 @@
+/*scroll behavior  sert a rendre plus beau quand il y'a un scroll 
+tester scroller jusqu'en bas et appuiyer sur le lien accueil de la nav bar
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/*couleurs de fond de page*/
+body {
+  background-color: #0c2454;
+}
+
+/* on met en place : 
+tout est sans marge et padding
+le type de font importé de google dans le fichier index.HTML  
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/*couleurs detexte de tout les h1 + p*/
+h1 {
+  color: #09959f;
+}
+p {
+  color: #fff;
+}
+
+/*ici on met en place : 
+le header prendra 100% de la taille de l'ecran ( viewheight) et 100% de largeur de l'ecran         
+image de fond avec un linear gradient rgba pour mettre l'opacité a 0.7
+la taille position du background et du header 
+position relative au contener    
+*/
+header {
+  min-height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(
+      rgba(17, 31, 91, 0.7),
+      rgba(17, 31, 91, 0.7)
+    ),
+    url(../images/banner.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/*barre de navigation */
+
+/*on met en place ici : 
+couleur de fond de la barre de navigation 
+on met un display flex pour que les elements soit en lignes 
+justify content space between pour que il y ai de l'espace entre les elements du nav ( icons et ul ) 
+on met les items de la nav barre au centre 
+width 100% pour qu'elle prenne toute la largeure de l'ecran
+position fixed pour quelle bouge avec l'ecaran
+z-indexe 100 pour qu'elle soit toujour au premier plan 
+margin bottom pour faire de l'espace en bas 
+*/
+nav {
+  background-color: #0c2454;
+  display: flex;
+  padding: 0.5% 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  margin-bottom: 50px;
+}
+
+/*on met en place l'image AI avec unpeu d'espace a gauche et gerer sa taille*/
+nav img {
+  margin-left: 40px;
+  width: 100px;
+}
+
+/*flex 1 pour modifier la dimension des elements flex du nav_links et text align right pour mettre a droite les textes (liens) */
+.nav_links {
+  flex: 1;
+  text-align: right;
+}
+
+/*on enleve la decoration de base des li 
+  inline-block pour qu'ils soient en ligne
+*/
+.nav_links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+/*la decoration de base des a
+  mettre couleur blanche
+  et augmenter la taille du texte
+*/
+.nav_links ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/*ajout d'elements cosmetique avec ::after 
+  transition 0.5 est le temps que met l'animation 
+*/
+.nav_links ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+/*:hover = quand on met la souris sur le lien 
+  ::after s'active
+*/
+.nav_links ul li a:hover::after {
+  width: 100%;
+}
+
+/*css pour le titre au millieu de la page et la mini description 
+  transform translate pour les mettre au millieu 
+*/
+.text_box {
+  width: 99%;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.text_box h1 {
+  font-size: 80px;
+}
+.text_box p {
+  margin: 10px 0 40px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/*Introduction*/
+
+/* on met une image de fond */
+.wrap_Introduction {
+  background-image: linear-gradient(rgba(13, 36, 86, 0.6), rgba(13, 42, 98, 1)),
+    url(../images/Intro.avif);
+  background-size: cover;
+  position: relative;
+}
+
+/* gerer les textes et leurs positions  */
+
+.Introduction {
+  width: 90%;
+  margin: auto;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.Introduction h1 {
+  font-size: 36px;
+  font-weight: 600;
+  padding-bottom: 40px;
+}
+
+/* introduction texte est la classe du texte + le lien en savoir plus 
+  on les mets en flex 
+*/
+
+.Introduction_text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Introduction_text p {
+  line-height: 27px;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px;
+  color: #fff;
+}
+
+/*Types*/
+/* on met une image de fond */
+.wrap_type {
+  width: 100%;
+  background-image: linear-gradient(
+      rgba(17, 31, 91, 0.7),
+      rgba(17, 31, 91, 0.7)
+    ),
+    url(../images/image001.webp);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* on gere texte */
+
+.Types {
+  width: 90%;
+  margin: auto;
+  padding-top: 30px;
+  text-align: center;
+}
+.Types h1 {
+  font-size: 36px;
+  font-weight: 600;
+  padding-bottom: 40px;
+}
+.Types p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 50px;
+}
+
+/*Types AI grid form*/
+
+.Types_grid {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.Types_grid p {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
+
+/*dlex les lignes des types */
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* met en place les colonnes de types 
+  flex-basisdétermine la base de flexibilité utilisée comme taille initiale principale pour un élément flexible
+  couleurs de fond 
+  border radius est la courbe des bords 
+  box-sizing définit la façon dont la hauteur et la largeur totale d'un élément est calculée
+*/
+
+.Type_col {
+  flex-basis: 22%;
+  background: #f44336;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+/*gere les textes*/
+
+.Type_col h3 {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+/*ajoute de m'ombre au cadre quand on place la souris dessus*/
+
+.Type_col:hover {
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 3);
+}
+
+/*boutton pour en savoir plus 
+  mettre une couleur de texte une bordure solide 
+  fond transparent pour qu'elle prenne la couleur du background 
+  et un curseur type pointeur quand on met la souris dessus
+*/
+
+.Types_btn {
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.Types_btn:hover {
+  border: 1px solid #f44336;
+  background: #f44336;
+  transition: 1s;
+}
+
+/*Categorie*/
+
+/* meme principe que Types  on crée une ligne 2 columns , une column pour chaque type */
+
+/*met en place la taille de la section categorie */
+
+.Categorie {
+  width: 90%;
+  margin: 30px auto auto;
+  padding-top: 30px;
+  text-align: center;
+}
+
+/*gere les textes */
+
+.Categorie h1 {
+  font-size: 36px;
+  font-weight: 600;
+  padding-bottom: 40px;
+}
+.Categorie p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 50px;
+}
+
+/*met en place une ligne avec un gap 11px  qui est l'espace entre les elements de la ligne
+  et on les mets en flex
+  justify content center pour les mettre au millieu
+*/
+.cat_row {
+  gap: 110px;
+  display: flex;
+  justify-content: center;
+}
+
+/*les ccolumns meme principe que ceux de Types*/
+
+.cat_col {
+  flex-basis: 22%;
+  background: #f44336;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+/*gere les textes */
+
+.cat_col h3 {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0;
+}
+.cat_col p {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
+
+.cat_col:hover {
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 3);
+}
+
+.cat_col {
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  background: transparent;
+  cursor: pointer;
+}
+.cat_col:hover {
+  border: 1px solid #f44336;
+  background: #f44336;
+  transition: 1s;
+}
+
+/*fields*/
+
+/*meme principe que Types et categorie mais avec plusieurs lignes */
+
+/*met en place l'espace de la section fields*/
+.fields {
+  width: 90%;
+  margin: auto;
+  padding-top: 30px;
+  text-align: center;
+}
+
+/*gere les textes */
+.fields h1 {
+  font-size: 36px;
+  font-weight: 600;
+  padding-bottom: 40px;
+}
+.Types p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+  padding-left: 50px;
+}
+
+/*gere l'espace des lignes et columns */
+.fields_grid {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.fields_grid p {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
+
+/*met en place les lignes */
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*met en place les columns */
+
+.fields_col {
+  flex-basis: 22%;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  height: 500px;
+}
+/*gere textes */
+
+.fields_col h3 {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0 150px;
+}
+
+.fields_col:hover {
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 3);
+}
+
+/*gere les bouttons dans les cards */
+
+.fields_btn {
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 12px 34px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+.fields_btn:hover {
+  border: 1px solid #f44336;
+  background: #f44336;
+  transition: 1s;
+}
+
+/*pourchaque cards on met on place son background*/
+
+.F1 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../Images/chatbot.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.F2 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/farm6.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.F3 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/avion4.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F4 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/shop4.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F5 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/secu1.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F6 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/sport1.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F7 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/man1.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F8 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/inv1.png);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F9 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/dc1.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F10 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/hc2.webp);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.F11 {
+  background-image: linear-gradient(
+      rgba(178, 181, 194, 0.7),
+      rgba(178, 181, 194, 0.7)
+    ),
+    url(../images/aa1.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/*footer*/
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  background-color: #f1faee;
+}
+
+footer h4 {
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+footer p {
+  color: gray;
+  padding-bottom: 18px;
+}
+
+.icon {
+  color: #f44336;
+  margin: 10px 13px;
+  cursor: pointer;
+  padding-bottom: 18px;
+}

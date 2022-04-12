@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">  
+    <link rel="stylesheet" href="{{ url_for('static',filename='styles/styleAI.css') }}">
+    <title>Ai</title>
+</head>
+<body>
+
+
+    <!--ici e header contient deux nav bar une horizontal et un vertical la horizontale est la meme que 
+        celle des autres page 
+        la verticale permet de naviguer entre les sections de la page 
+    -->
+    <header>
+        <nav class="horizontal">
+            <a href="/"><img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo"></a>
+            <div class="nav_links_horizontal">
+                <ul>
+
+                    <li>
+                        <a href="/">Accueil</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Description</a>
+                    </li>
+
+                    <li>
+                        <a href="/Types">Types</a>
+                    </li>
+
+                    <li>
+                        <a href="/researchs">Recherches</a>
+                    </li>
+
+                    <li>
+                        <a href="/Contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+
+
+        <nav class="vertical">
+            <div class="nav_links_vertical">
+                <ul>
+
+                    <li>
+                        <a href="#His">Histoire de L'Intelligence artificielle</a>
+                    </li>
+                    <li>
+                        <a href="#Exp">Comment fonctionne une IA ?</a>
+                    </li>
+                    <li>
+                        <a href="#imp">Pourquoi l'intelligence artificielle est-elle importante ?</a>
+                    </li>
+
+                    <li>
+                        <a href="#adv">Quels sont les avantages et desavantage de L'IA?</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <!--container qui contient plusieurs content chacun d'eux represente une section 
+        comme la page types
+    -->
+    <div class="container">
+
+        <section class="history content " id="His">
+
+            <div class="borders">
+
+                <div style="margin: 60px 100px;">
+                
+                    <h1 style="margin-top: 30px">Histoire de L'Intelligence artificielle</h1>
+                    <br>
+                    <br>
+                    <p style="text-align: left;">Le concept d'objets inanimés dotés d'intelligence existe depuis l'Antiquité. 
+                        Le dieu grec Héphaïstos était représenté dans les mythes comme forgeant des serviteurs ressemblant à des robots en or. 
+                        Les ingénieurs de l'Égypte ancienne ont construit des statues de dieux animées par des prêtres.
+                        <br>
+                        <br>
+                        Au fil des siècles,
+                        des penseurs allant d'Aristote au théologien espagnol du XIIIe siècle Ramon Llull en passant 
+                        par René Descartes et Thomas Bayes ont utilisé les outils et la logique de leur époque pour décrire 
+                        les processus de pensée humaine comme des symboles, jetant les bases de concepts d'IA tels que la représentation générale 
+                        des connaissances.
+                        <br>
+                        <br>
+                        Le terme intelligence artificielle a été inventé en 1956, 
+                        mais l'IA est devenue plus populaire aujourd'hui grâce à l'augmentation des volumes de données, aux algorithmes avancés 
+                        et aux améliorations de la puissance de calcul et du stockage.
+                        <br>
+                        <br>
+            
+                        Les premières recherches sur l'IA dans les années 1950 ont exploré des sujets tels que la résolution de problèmes 
+                        et les méthodes symboliques. 
+                        <br>
+                        <br>
+                        Dans les années 1960, le département américain de la Défense s'est intéressé à ce type de
+                        travail et a commencé à former des ordinateurs pour imiter le raisonnement humain de base.
+                        <br>
+                        <br>
+                        Par exemple, la Defense Advanced Research Projects Agency (DARPA) a réalisé des projets de cartographie des rues dans les années 1970.
+                        Et la DARPA a produit des assistants personnels intelligents en 2003, bien avant que Siri, Alexa ou Cortana ne soient des 
+                        noms familiers.
+                        <br>
+                        <br>
+            
+                        Ces premiers travaux ont ouvert la voie à l'automatisation et au raisonnement formel que nous voyons dans les ordinateurs aujourd'hui, 
+                        y compris les systèmes d'aide à la décision et les systèmes de recherche intelligents qui peuvent être conçus pour compléter et
+                        augmenter les capacités humaines.
+                        <br>
+                        <br>
+            
+                        Alors que les films hollywoodiens et les romans de science-fiction dépeignent l'IA comme des robots ressemblant à des humains
+                        qui envahissent le monde, l'évolution actuelle des technologies de l'IA n'est pas si effrayante - ou tout à fait aussi intelligente.
+                        <br>
+                        <br>
+                        Au lieu de cela, l'IA a évolué pour offrir de nombreux avantages spécifiques dans chaque industrie. 
+                        Continuez à lire pour des exemples modernes d'intelligence artificielle dans les soins de santé, la vente au détail et plus encore.
+                    </p>    
+                    <br>
+                </div>
+            </div>
+            <br>
+        </section>
+
+        <section class="history content " id="Exp">
+
+            <div class="borders">
+
+                <div style="margin: 60px 100px;">
+                
+                    <h1 style="margin-top: 30px">Comment fonctionne l'IA ?</h1>
+                    <br>
+                    <br>
+                    <p style="text-align: left;">
+                        Maintenant que nous avons compris comment l'IA a évolué au cours de l'histoire 
+                        que nous avons une idée de ses principes fondamentaux, examinons de plus près le fonctionnement de l'IA.
+                        <br>
+                        <br>
+                        Deux techniques fondamentales permettent à l'IA d'être effective efficacement : le machine learning (ML) 
+                        et le deep learning (DL). ML et DL créent l'environnement nécessaire au fonctionnement de l'IA. 
+                        <br>
+                        <br>
+                        Le machine learning est constitué d'outils et d'algorithmes intégrés à un ordinateur qui « apprennent » 
+                        ou utilisent des données existantes pour produire des prédictions précises. 
+                        
+                        <br>
+                        <br>
+                        
+                        Le deep learning est une fonction
+                        automatisée du machine learning, qui permet à une machine de remarquer des modèles et de classer les informations
+                        dans des catégories, ce qui lui permet de « penser ».
+                        <br>
+                        <br>
+
+                        Examinons de plus près certaines technologies d'IA et voyons comment elles peuvent fonctionner pour
+                        votre entreprise.
+                        
+                        Une plateforme de machine learning peut utiliser des informations provenant de plusieurs sources de données
+                        différentes, comme des outils de développement et de formation, ainsi que d'autres algorithmes, pour prédire
+                        et classer des informations.
+                        <br>
+                        <br>
+                        Le deep learning est une technique de machine learning qui utilise la reconnaissance et la classification de 
+                        modèles pour travailler avec de grands ensembles de données.
+                        <br>
+                        <br>
+                        Les réseaux neuronaux sont une technique de machine learning qui utilise des algorithmes statistiques s'inspirant
+                        du comportement des neurones du cerveau humain.
+                        <br>
+                        <br>
+                        L'informatique cognitive est un type d'informatique qui utilise le raisonnement et une compréhension de haut
+                        niveau. Elle n'est pas considérée comme du machine learning, car elle utilise une combinaison de plusieurs
+                        technologies d'IA pour produire des résultats.
+                        <br>
+                        <br>
+
+                        La vision par ordinateur permet aux ordinateurs d'agir et de traiter comme l'œil humain. Elle analyse le contexte
+                        des images et vidéos numériques afin de produire des informations digitales ou symboliques pour la prise de 
+                        décisions.
+                        <br>
+                        <br>
+                        La génération du langage naturel consiste simplement à générer du texte à partir de données informatiques.
+                        Ce processus est souvent utilisé pour le service client, les rapports et les résumés en matière de veille 
+                        économique.
+                        <br>
+                        <br>
+                        
+                        Les unités de traitement graphique (GPU) font partie d'un circuit électronique et accélèrent la création d'images
+                        sur un dispositif d'affichage. Elles sont indispensables au bon fonctionnement de l'IA.
+                        <br>
+                        <br>
+
+                        L'IoT, ou Internet des objets, consiste en un réseau d'appareils connectés qui génèrent et partagent des données,
+                        comme les appareils électroménagers, les haut-parleurs intelligents, les objets de type prêt-à-porter et les 
+                        appareils médicaux. L'IA dépend des données de ces appareils pour générer de la business intelligence.
+                        <br>
+                        <br>
+                        Les algorithmes avancés sont des algorithmes complexes qui sont constamment développés et combinés pour fournir
+                        un traitement intelligent continu.
+                        <br>
+                        <br>
+
+                        Les API, ou interfaces de programmation d'applications, sont des technologies parfois utilisées pour accéder 
+                        aux services d'IA. De même, l'IA utilise des flux de données API pour aider les entreprises à interpréter des 
+                        données qui ne sont pas toujours visibles.
+                        
+                        
+                    </p>    
+                    <br>
+                </div>
+            </div>
+            <br>
+
+        <div class="borders">
+
+            <section class="Importance content">
+
+                <h1 id="imp">Pourquoi l'intelligence artificielle est-elle importante ?</h1>
+                <br>
+                <br>
+                <br>
+
+                <p>De nos jours, êtres humains et machines génèrent des données plus vite qu'il n'est humainement possible de les absorber et 
+                    de les interpréter pour prendre des décisions complexes.
+                    <br>
+                    <br>
+                    L'intelligence artificielle est la base de tout apprentissage par un ordinateur et représente l'avenir des processus décisionnels complexes. 
+                    <br>
+                    <br>
+                    Par exemple, la plupart des êtres humains peuvent apprendre
+                    à ne pas perdre à une simple partie de morpion, alors qu'il existe 255 168 actions possibles, dont 46 080 mènent à un match nul.
+                    <br>
+                    <br>
+                    En revanche, les champions du jeu de dames sont plus rares, étant donné qu'il existe plus de 500 x 1018 (500 trillions) de coups
+                    possibles. Les ordinateurs sont capables de calculer ces combinaisons et les meilleures permutations possibles très efficacement,
+                    afin de prendre la bonne décision. L'IA (avec son évolution logique, le machine learning) et le deep learning représentent
+                    l'avenir de la prise de décisions.
+                </p>
+                <br>
+                <br>
+
+                
+
+                <div class="Importance_container">
+                    <div>
+                        <p><span><strong>L'IA automatise l'apprentissage et la découverte répétitifs grâce aux données.</strong>&nbsp;
+                            Au lieu d'automatiser les tâches manuelles, l'IA effectue des tâches fréquentes, à volume élevé et informatisées. 
+                            Et il le fait de manière fiable et sans fatigue. Bien sûr, l'humain reste indispensable pour mettre en place le 
+                            système et poser les bonnes questions.
+                            <br>
+                            </span>
+                        </p>
+                        <br>
+                        <br>        
+                        <p><span ><strong>L'IA ajoute de l'intelligence</strong> aux produits existants. 
+                            De nombreux produits que vous utilisez déjà seront améliorés avec des capacités d'IA, 
+                            tout comme Siri a été ajouté en tant que fonctionnalité à une nouvelle génération de produits Apple.
+                             L'automatisation, les plateformes conversationnelles, les robots et les machines intelligentes peuvent
+                              être combinés avec de grandes quantités de données pour améliorer de nombreuses technologies.
+                               Les mises à niveau à la maison et sur le lieu de travail vont des renseignements de sécurité et 
+                               des caméras intelligentes à l'analyse des investissements.
+                            </span>
+                        </p>
+                        <br>
+                        <br>
+                        <p><span ><strong>L'IA s'adapte grâce à des algorithmes d'apprentissage progressif</strong> 
+                            pour laisser les données faire la programmation. L'IA trouve la structure et les régularités dans les données
+                            afin que les algorithmes puissent acquérir des compétences. Tout comme un algorithme peut apprendre par lui-même
+                            à jouer aux échecs, il peut apprendre par lui-même quel produit recommander ensuite en ligne. Et les modèles 
+                            s'adaptent lorsqu'ils reçoivent de nouvelles données.&nbsp;
+                            <br>
+                            </span>
+                        </p>
+                        <br>
+                        <br>       
+                        <p><span ><strong>
+                            L'IA analyse des données de plus en plus approfondies </strong> 
+                            à l'aide de réseaux de neurones comportant de nombreuses couches cachées. 
+                            Construire un système de détection de fraude avec cinq couches cachées était auparavant impossible. 
+                            Tout cela a changé avec l'incroyable puissance informatique et le big data. Vous avez besoin de 
+                            beaucoup de données pour former des modèles d'apprentissage en profondeur, car ils apprennent directement 
+                            à partir des données.&nbsp;
+                            </span>
+                        </p>
+                        <br>
+                        <br>       
+                        <p><span><strong>L'IA atteint une précision incroyable</strong> 
+                            grâce aux réseaux de neurones profonds. Par exemple, vos interactions avec Alexa et Google 
+                            sont toutes basées sur le deep learning. Et ces produits deviennent de plus en plus précis au 
+                            fur et à mesure que vous les utilisez. Dans le domaine médical, les techniques d'intelligence
+                            artificielle issues de l'apprentissage en profondeur et de la reconnaissance d'objets peuvent 
+                            désormais être utilisées pour identifier le cancer sur des images médicales avec une précision 
+                            améliorée.
+                            </span>
+                        </p>
+                        <br>
+                        <br>       
+                        <p><span><strong>L'IA tire le meilleur parti des données. </strong>Lorsque les algorithmes sont 
+                            auto-apprenants, les données elles-mêmes sont un atout. Les réponses sont dans les données. 
+                            l vous suffit d'appliquer l'IA pour les trouver. Puisque le rôle des données est maintenant plus 
+                            important que jamais, cela peut créer un avantage concurrentiel. Si vous disposez des meilleures 
+                            données dans un secteur concurrentiel, même si tout le monde applique des techniques similaires, les
+                            meilleures données gagneront.
+                            </span>
+                        </p>
+                        <br>
+                        <br>
+                        <br>
+            
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    
+        <section class="adventage content">
+            <div class="borders">
+                <div style="margin-top: 30px ;margin-left:  50px; margin-right: 50px;">
+
+                    <h1 id="adv">Quels sont les avantages et desavantage de L'IA?</h1>
+                    <br>
+                    <br>
+                    <p>Les réseaux de neurones artificiels et les technologies d'intelligence artificielle d'apprentissage en profondeur 
+                        évoluent rapidement, principalement parce que l'IA traite de grandes quantités de données beaucoup plus rapidement et 
+                        fait des prédictions plus précises qu'il n'est humainement possible.
+                    </p>
+                    <br>
+                    <br>
+                    <p>Alors que l'énorme volume de données créées quotidiennement enterrerait un chercheur humain, 
+                        les applications d'IA qui utilisent l'apprentissage automatique peuvent prendre ces données et les transformer 
+                        rapidement en informations exploitables. Au moment d'écrire ces lignes, le principal inconvénient de l'utilisation 
+                        de l'IA est qu'il est coûteux de traiter les grandes quantités de données nécessaires à la programmation de l'IA.
+                    </p>
+                    <br>
+                    <br>
+                    <div class="ADV">
+
+                        <div class="col">
+                            <h2>Advantages</h2>
+                            <ul>
+                                <li>
+                                    <p>Bon pour les travaux axés sur les détails</p> 
+                                </li>
+                                <li>
+                                    <p>-Temps réduit pour les tâches gourmandes en données ;</p>
+                                </li>
+                                <li>
+                                    <p>-Fournit des résultats cohérents et precis;</p>
+                                </li>
+                                <li>
+                                    <p>-Les agents virtuels alimentés par l'IA sont toujours disponibles</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="col">
+                            <h2>Disadvantages</h2>
+                            <ul>
+                                <li>
+                                    <p>-couteux</p>
+                                </li>
+                                <li>
+                                    <p>-Nécessite une expertise technique approfondie ;</p>
+                                </li>
+                                <li>
+                                    <p>-Offre limitée de travailleurs qualifiés pour créer des outils d'IA ;</p>
+                                </li>
+                                <li>
+                                    <p>-difficultés à généraliser d'une tâche à l'autre.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <br>
+        </section>
+        </section>
+
+    </div>
+
+    <footer>
+        <h4>About us</h4>
+        <p>Etudiants universitaires USTHB acad B </p> 
+        <div class="icon">
+            <a href="https://www.facebook.com/Chrf.Mounir/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://twitter.com/redha_wassim" target="_blank"> <i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.instagram.com/chrf_mounir/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/redha-wasssim-756023237/" target="_blank"> <i class="fa-brands fa-linkedin-in"></i></a>
+
+        </div>
+        <p>made by Brahimi redha wassim et Charef mounir</p>
+    </footer>
+
+
+</body>
+</html>

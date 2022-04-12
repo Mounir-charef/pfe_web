@@ -1,0 +1,294 @@
+/*scroll behavior  sert a rendre plus beau quand il y'a un scroll 
+tester scroller jusqu'en bas et appuiyer sur le lien accueil de la nav bar
+ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/*ici on met en place : 
+image de fond avec un linear gradient rgba pour mettre l'opacité a 0.9
+la taille position du background et du header  
+*/
+body {
+  background-image: linear-gradient(
+      rgba(17, 31, 91, 0.9),
+      rgba(17, 31, 91, 0.9)
+    ), url(../images/525966.jpg);
+  background-size: cover;
+  background-position: right;
+}
+
+
+/* on met en place : 
+tout est sans marge et padding
+le type de font importé de google 
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/*couleurs detexte de tout les h1 + p+h2 */
+
+h1 {
+  color: #09959f;
+}
+p {
+  color: #fff;
+}
+
+/*barre de navigation horizontale */
+
+/*on met en place ici : 
+couleur de fond de la barre de navigation 
+on met un display flex pour que les elements soit en lignes 
+justify content space between pour que il y ai de l'espace entre les elements du nav ( icons et ul ) 
+on met les items de la nav barre au centre 
+width 100% pour qu'elle prenne toute la largeure de l'ecran
+position fixed pour quelle bouge avec l'ecaran
+z-indexe 100 pour qu'elle soit toujour au premier plan 
+margin bottom pour faire de l'espace en bas 
+*/
+
+.horizontal {
+  background-color: #0c2454;
+  display: flex;
+  padding: 0.5% 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  margin-bottom: 50px;
+}
+
+/*on met en place l'image AI avec unpeu d'espace a gauche et gerer sa taille*/
+
+.horizontal img {
+  margin-left: 40px;
+  width: 100px;
+}
+
+/*flex 1 pour modifier la dimension des elements flex du nav_links et text align right pour mettre a droite les textes (liens) */
+
+.nav_links_horizontal {
+  flex: 1;
+  text-align: right;
+}
+
+/*on enleve la decoration de base des li 
+  inline-block pour qu'ils soient en ligne
+*/
+.nav_links_horizontal ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+/*la decoration de base des a
+  mettre couleur blanche
+  et augmenter la taille du texte
+*/
+.nav_links_horizontal ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/*ajout d'elements cosmetique avec ::after 
+  transition 0.5 est le temps que met l'animation 
+*/
+.nav_links_horizontal ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+/*:hover = quand on met la souris sur le lien 
+  ::after s'active
+*/
+.nav_links_horizontal ul li a:hover::after {
+  width: 100%;
+}
+
+/*barre de navigation verticale */
+/*on met en place ici : 
+  on enleve la decoration des elements 
+  on fixe une largeur 
+  une hauteur de 100%
+  une distance avec le top pour qu'elle ne se retrouve pas couverte
+  par la barre horizontale
+*/
+
+.vertical ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 12%;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  top: 7%;
+}
+
+/*gere les liens 
+  display block pour qu'ils soient l'un au dessous de l'autre
+*/
+
+.vertical li a {
+  display: block;
+  color: #f1faee;
+  padding: 30px 16px;
+  transition: 0.5s;
+  text-decoration: none;
+}
+
+.vertical li a:hover {
+  background-color: #555;
+  transition: 0.5s;
+  color: white;
+}
+
+/*gerer les contenus */
+
+.container {
+  height: 100%;
+  background-color:rgba(17, 31, 91, 0.2);
+  margin-left: 12%;
+  margin-right: 12%;
+  padding-top: 50px;
+}
+
+/*met les bords pour chaque partie 
+  bords solid et fin avec une couleur bvlanche
+  et un courbe de 6pxs
+
+*/
+.borders {
+  border-style: solid;
+  border-width: thin;
+  border-color: #ffffff;
+  border-radius: 6px;
+}
+
+.content {
+  margin-left: 4%;
+  margin-right: 4%;
+}
+
+/*gere la section histoire*/
+
+.history {
+  text-align: center;
+  padding-top: 100px;
+}
+
+.history h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+.history p,
+span {
+  line-height: 27px;
+}
+
+/*gere la section importance*/
+
+.Importance {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.Importance p {
+  text-align: left;
+}
+
+.Importance p,
+span,
+strong {
+  line-height: 27px;
+}
+.Importance h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+/*gere la section avantage*/
+
+.adventage {
+  text-align: center;
+  margin-top: 1%;
+}
+.adventage p {
+  text-align: left;
+}
+
+/**/
+
+/*met en place une ligne avec un gap 11px  qui est l'espace 
+entre les elements de la ligne
+  et on les mets en flex
+  justify content center pour les mettre au millieu
+*/
+.ADV {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+/*les ccolumns meme principe que ceux de Types*/
+
+.col {
+  flex-basis: 22%;
+  background: #f44336;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+/*gere les textes */
+
+.col h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.col ul li {
+  line-height: 27px;
+  list-style-type: none;
+}
+
+/*footer*/
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  background-color: #f1faee;
+}
+
+footer h4 {
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+footer p {
+  color: gray;
+  padding-bottom: 18px;
+}
+
+.icon {
+  color: #f44336;
+  margin: 0 13px;
+  cursor: pointer;
+  padding-bottom: 18px;
+}

@@ -1,0 +1,126 @@
+/*scroll behavior  sert a rendre
+ plus beau quand il y'a un scroll 
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* on met en place : 
+tout est sans marge et padding
+le type de font importé de google 
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/*ici on met en place : 
+image de fond avec un linear gradient rgba pour mettre l'opacité a 0.9
+la taille position du background et du header  
+*/
+body {
+  background-image: linear-gradient(
+      rgba(17, 31, 91, 0.9),
+      rgba(17, 31, 91, 0.9)
+    ),
+    url(../images/525966.jpg);
+  background-size: cover;
+  background-position: right;
+}
+
+
+h1 {
+  color: #fff;
+}
+p {
+  color: #fff;
+}
+form{
+  color: #fff;
+}
+
+/*barre de navigation */
+
+/*on met en place ici : 
+couleur de fond de la barre de navigation 
+on met un display flex pour que les elements soit en lignes 
+justify content space between pour que il y ai de l'espace entre les elements du nav ( icons et ul ) 
+on met les items de la nav barre au centre 
+width 100% pour qu'elle prenne toute la largeure de l'ecran
+position fixed pour quelle bouge avec l'ecaran
+z-indexe 100 pour qu'elle soit toujour au premier plan 
+margin bottom pour faire de l'espace en bas 
+*/
+.horizontal {
+  background-color: #0c2454;
+  display: flex;
+  padding: 0.5% 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: -1;
+  margin-bottom: 50px;
+  top: 0;
+}
+
+/*on met en place l'image AI avec unpeu d'espace a gauche et gerer sa taille*/
+
+.horizontal img {
+  margin-left: 40px;
+  width: 100px;
+}
+
+/*flex 1 pour modifier la dimension des elements flex du nav_links et text align right pour mettre a droite les textes (liens) */
+
+.nav_links_horizontal {
+  flex: 1;
+  text-align: right;
+}
+
+/*on enleve la decoration de base des li 
+  inline-block pour qu'ils soient en ligne
+*/
+.nav_links_horizontal ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+/*la decoration de base des a
+  mettre couleur blanche
+  et augmenter la taille du texte
+*/
+.nav_links_horizontal ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/*ajout d'elements cosmetique avec ::after 
+  transition 0.5 est le temps que met l'animation 
+*/
+.nav_links_horizontal ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+/*:hover = quand on met la souris sur le lien 
+  ::after s'active
+*/
+.nav_links_horizontal ul li a:hover::after {
+  width: 100%;
+}
+
+/*marge pour le container */
+.container {
+  margin-top: 10%;
+  margin-left: 10%;
+}

@@ -1,0 +1,200 @@
+/*scroll behavior  sert a rendre plus beau quand il y'a un scroll 
+tester scroller jusqu'en bas et appuiyer sur le lien accueil de la nav bar
+ */
+html {
+  scroll-behavior: smooth;
+}
+
+/*ici on met en place : 
+image de fond avec un linear gradient rgba pour mettre l'opacité a 0.9
+la taille position du background et du header  
+*/
+body {
+  background-image: linear-gradient(
+      rgba(17, 31, 91, 0.9),
+      rgba(17, 31, 91, 0.9)
+    ),
+    url(../images/525966.jpg);
+  background-size: cover;
+  background-position: right;
+}
+
+/* on met en place : 
+tout est sans marge et padding
+le type de font importé de google 
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/*couleurs detexte de tout les h1 + p+h2 */
+h1 {
+  margin-top: 50px;
+  color: #09959f;
+}
+h2 {
+  color: #09959f;
+}
+p {
+  color: #f3f3f1;
+}
+
+/*barre de navigation */
+
+/*on met en place ici : 
+couleur de fond de la barre de navigation 
+on met un display flex pour que les elements soit en lignes 
+justify content space between pour que il y ai de l'espace entre les elements du nav ( icons et ul ) 
+on met les items de la nav barre au centre 
+width 100% pour qu'elle prenne toute la largeure de l'ecran
+position fixed pour quelle bouge avec l'ecaran
+z-indexe 100 pour qu'elle soit toujour au premier plan 
+margin bottom pour faire de l'espace en bas 
+*/
+nav {
+  background-color: #0c2454;
+  display: flex;
+  padding: 0.5% 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  margin-bottom: 50px;
+}
+
+/*on met en place l'image AI avec unpeu d'espace a gauche et gerer sa taille*/
+nav img {
+  margin-left: 40px;
+  width: 100px;
+}
+
+/*flex 1 pour modifier la dimension des elements flex du nav_links et text align right pour mettre a droite les textes (liens) */
+.nav_links {
+  flex: 1;
+  text-align: right;
+}
+
+/*on enleve la decoration de base des li 
+  inline-block pour qu'ils soient en ligne
+*/
+.nav_links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+
+/*la decoration de base des a
+  mettre couleur blanche
+  et augmenter la taille du texte
+*/
+.nav_links ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/*ajout d'elements cosmetique avec ::after 
+  transition 0.5 est le temps que met l'animation 
+*/
+.nav_links ul li a::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+/*:hover = quand on met la souris sur le lien 
+  ::after s'active
+*/
+.nav_links ul li a:hover::after {
+  width: 100%;
+}
+
+/*le container qui contient tot les elements 
+  on lui met une marge et un paddingn
+*/
+.container {
+  height: 100%;
+  margin-left: 2%;
+  margin-right: 2%;
+  padding-top: 50px;
+}
+
+/*gerer les contenus */
+
+.content {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.Titre {
+  text-align: center;
+  padding: 50px;
+}
+
+.Reactive_machines {
+  margin-top: 70px;
+}
+.Reactive_machines h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.Reactive_machines p {
+  line-height: 27px;
+}
+
+.ol_limited {
+  list-style: circle;
+  color: #f3f3f1;
+}
+.ol_limited li {
+  margin-left: 60px;
+}
+
+.borders {
+  border-style: solid;
+  border-width: thin;
+  border-color: #ffffff;
+  border-radius: 6px;
+  padding: 50px;
+}
+
+.bordtitle{
+  border-style: solid;
+  border-width: thin;
+  border-color: #ffffff;
+  border-radius: 6px;
+  padding: 10px 0;
+}
+
+/*footer*/
+
+footer {
+  text-align: center;
+  padding-top: 5px;
+  background-color: #f1faee;
+}
+
+footer h4 {
+  margin-bottom: 25px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+footer p {
+  color: gray;
+  padding-bottom: 18px;
+}
+
+.icon {
+  color: #f44336;
+  margin: 10px 13px;
+  cursor: pointer;
+  padding-bottom: 18px;
+}
