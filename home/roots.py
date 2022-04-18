@@ -1,6 +1,6 @@
 from home import app
 from flask import request, render_template
-
+import forms
 
 @app.route('/',methods=['GET','POST'])
 @app.route('/home',methods=['GET','POST'])
@@ -21,3 +21,8 @@ def aipage():
 @app.route('/Contact')
 def contract_page():
     return render_template("Contact.html")
+
+@app.route('/field')
+def route():
+    form = forms.Registerfield()
+    return render_template('field.html',form = form)

@@ -60,6 +60,7 @@ z-indexe 100 pour qu'elle soit toujour au premier plan
 margin bottom pour faire de l'espace en bas 
 */
 nav {
+  opacity: 0.6;
   background-color: #0c2454;
   display: flex;
   padding: 0.5% 0;
