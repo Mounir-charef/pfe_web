@@ -93,6 +93,19 @@ margin bottom pour faire de l'espace en bas
   mettre couleur blanche
   et augmenter la taille du texte
 */
+#skip_nav{
+  position: absolute;
+  transform: translateY(-500%);
+  padding: .5rem 1.5rem;
+  background-color: aqua;
+  border-radius: 0 0 .25rem .25rem;
+  left: .5rem;
+  transition: transform 325ms ease-in;
+}
+#skip_nav:focus{
+  transform: translateY(-370%);
+}
+
 .nav_links_horizontal ul li a {
   color: #fff;
   text-decoration: none;

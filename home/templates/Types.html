@@ -25,11 +25,11 @@
         <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="logo" /></a>
         <div class="nav_links">
           <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/AI">Description</a></li>
-            <li><a href="#">Types</a></li>
-            <li><a href="/researchs">Recherches</a></li>
-            <li><a href="/Contact">Contact</a></li>
+            <li><a href="{{ url_for('hello_world') }}">Accueil</a></li>
+            <li><a href="{{ url_for('mainpage') }}">Description</a></li>
+            <li><a href="{{ url_for('types') }}">Types</a></li>
+            <li><a href="{{ url_for('log') }}">Recherches</a></li>
+            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
           </ul>
         </div>
       </nav>

@@ -15,14 +15,16 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     />
-    <title>Contact</title>
+    <title>{% block title %}{% endblock %}</title>
   </head>
 
   <body>
+
     <header>
+      <a href="{{ url_for('contact_page') }}" id="skip_nav">create account </a>
       <!--meme nav bar -->
       <nav class="horizontal">
-        <a href="/"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="logo" /></a>
+        <a href="{{url_for('hello_world') }}"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="logo" /></a>
         <div class="nav_links_horizontal">
           <ul>
             <li><a href="{{ url_for('hello_world') }}">Accueil</a></li>
@@ -30,6 +32,10 @@
             <li><a href="{{ url_for('types') }}">Types</a></li>
             <li><a href="{{ url_for('log') }}">Recherches</a></li>
             <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{url_for('logout_page')}}"> Logout</a> </li>
+                <li><a href="#" style="color: lightcoral"> User: {{ current_user.name }}</a> </li>
+            {% endif %}
           </ul>
         </div>
       </nav>
@@ -39,10 +45,11 @@
       container contient les inputs et un h1
       chaque input a son form
 
-      style pour mettre un petit code css pour bien placer les elements 
+      style pour mettre un petit code css pour bien placer les elements
     -->
     <div class="container" style="text-align: left">
-      <div style="margin-left: 30%">
+      {% block content %}
+        <div style="margin-left: 30%">
         <h1>Veuillez laisser un message</h1>
         <br />
         <br />
@@ -75,6 +82,7 @@
         <br />
         <br />
       </div>
+      {% endblock %}
     </div>
   </body>
 </html>

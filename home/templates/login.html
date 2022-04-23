@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Login Page {% endblock %}
+{% block content %}
+    <h1 style="text-align: center"> LOGIN PAGE FOR MEDICAL HOSTS</h1>
+<br>
+<br>
+
+<form method="post" style="color: snow">
+{{ form.hidden_tag() }}
+{{ form.username.label() }}
+{{ form.username(placeholder=' Enter your username') }}
+<br>
+<br>
+{{ form.password.label() }}
+{{ form.password(placeholder=' Enter your password') }}
+<br>
+<br>
+<div>
+    <h6> Do not have an account?</h6>
+    <a href="{{ url_for('reg') }}" style="color: cyan;margin-left: 40px;text-decoration: none"> Sign up</a>
+</div>
+<br>
+{{ form.submit(style='cursor: pointer;') }}
+
+</form>
+</div>
+{% endblock %}
