@@ -1,49 +1,53 @@
-from flask import render_template, redirect, url_for, flash, request, Response
-from home import app
+from flask import render_template, redirect, url_for, flash, request
+from home import app, fr
 from home import forms, db
 from home.items import Item
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
-from home.y import Watermarking
+from home.y import Watermarking, extract
+from PIL import Image
 
 @app.route('/',methods=['GET','POST'])
 @app.route('/home',methods=['GET','POST'])
 @login_required
-def hello_world():  # put application's code here
-    return render_template("index.html")
-
-
-@app.route('/researchs')
-@login_required
-def mainpage():
-    return render_template("recherches.html")
-@app.route('/Types', methods=['GET', 'POST'])
-@login_required
-def types():
+def hello_world():
     form = forms.Uploadfield()
     if form.validate_on_submit():
         file1 = form.file.data
         filename = secure_filename(file1.filename)
         file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-        # Image.open(file1).show()
-        # mimetype = file1.mimetype
-        # image = items.img(img = file1.read(),name = filename,mimetype = mimetype )
-        img, PSNR = Watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-        img.save(f"{app.config['UPLOAD_FOLDER']}/{filename}_watermarked.png")
-        return render_template("upload.html", form=form, filename=filename,PSNR=PSNR)
+        Image.open(f"{app.config['UPLOAD_FOLDER']}/{filename}").resize((256,256)).save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+        msg = current_user.name.encode()
+        img, PSNR , leng= Watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}",fr.encrypt(msg).decode())
+        leng = str(leng).encode()
+        leng = fr.encrypt(leng).decode()
+
+        img.save(f"{app.config['UPLOAD_FOLDER']}/watermarked_{filename}")
+        return render_template("upload.html", form=form, filename=filename, PSNR=PSNR, leng=leng)
     return render_template("upload.html", form=form)
 
-@app.route('/AI')
-@login_required
-def aipage():
-    return render_template("AI.html")
 
-@app.route('/Contact')
-def contact_page():
-    return redirect(url_for('reg'))
+@app.route('/extract', methods=['GET', 'POST'])
+def reverse():
+    form = forms.Extractfield()
+    if form.validate_on_submit():
+        leng = form.hashkey.data
+        leng = leng.encode()
+        leng = int(fr.decrypt(leng).decode())
+
+        file1 = form.file.data
+        filename = secure_filename(file1.filename)
+        file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+        msg = extract(f"{app.config['UPLOAD_FOLDER']}/{filename}",leng).encode()
+        msg = fr.decrypt(msg).decode()
+        return render_template("extract.html", form=form, msg = msg, filename=filename)
+    return render_template("extract.html", form=form)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def log():
+    if current_user.is_authenticated:
+        logout_user()
     form = forms.Loginfield()
     url = request.args.get('next')
     if form.validate_on_submit():
@@ -52,12 +56,15 @@ def log():
             login_user(attempter_user)
             if url:
                 return redirect(url)
-            return redirect(url_for('log'))
-        else:
             return redirect(url_for('hello_world'))
+        else:
+            flash(f' Username or password incorrect',category='red')
+            return redirect(request.url)
 
 
     return render_template('login.html', form=form)
+
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def reg():
@@ -69,12 +76,14 @@ def reg():
         db.session.add(user_to_create)
         db.session.commit()
         flash(f' Account created with success',category='green')
+        login_user(user_to_create)
     if form.errors:
         for key, value in form.errors.items():
-            flash(f'wch al hbiba{value[0]}', category='red')
+            flash(f'Sorry but {value[0]}', category='red')
 
     users = Item.query.all()
-    return render_template('field.html', form=form,users=users)
+    return render_template('signup.html', form=form,users=users)
+
 
 
 @app.route('/logout')

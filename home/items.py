@@ -4,6 +4,8 @@ from flask_login import UserMixin
 @login_manager.user_loader
 def load_user(user_id):
     return Item.query.get(int(user_id))
+
+
 class Item(db.Model,UserMixin):
     id = db.Column(db.Integer(),primary_key=True)
     name = db.Column(db.String(), nullable=False, unique=True)
@@ -23,8 +25,3 @@ class Item(db.Model,UserMixin):
     def __repr__(self):
         return f'{self.id} , {self.name} , {self.email}'
 
-class img(db.Model):
-    id = db.Column(db.Integer(),primary_key=True)
-    img = db.Column(db.Text(), unique=True, nullable=False)
-    name = db.Column(db.Text(), nullable=False)
-    mimetype = db.Column(db.Text(), nullable=False)

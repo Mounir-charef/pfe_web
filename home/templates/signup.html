@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Signup Page {% endblock %}
+{% block content %}
+<div class="container" style="text-align: left">
+      <div style="margin-left: 30%">
+        <h1>give us a way to contect u king</h1>
+        <br />
+        <br />
+      </div>
+
+      <div>
+         <form method="POST" class="form-register" style="color:whitesmoke">
+            {{ form.hidden_tag() }}
+             {{ form.user.label() }}
+             {{ form.user(placeholder=' Username') }}
+             <br>
+             <br>
+             {{ form.email.label() }}
+             {{ form.email(placeholder=' Email') }}
+                <br>
+                <br>
+             {{ form.pass1.label() }}
+             {{ form.pass1(placeholder=' Give password') }}
+                <br>
+                <br>
+             {{ form.pass2.label() }}
+             {{ form.pass2(placeholder=' Confirm password') }}
+             <br>
+             <br>
+             {{ form.submit() }}
+         </form>
+      </div>
+        {% with messages = get_flashed_messages(with_categories=True)  %}
+            {% if messages %}
+                {% for category,message in messages if not category=='info' %}
+                    <p style="color: {{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+</div>
+{% endblock %}

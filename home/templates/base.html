@@ -21,68 +21,52 @@
   <body>
 
     <header>
-      <a href="{{ url_for('contact_page') }}" id="skip_nav">create account </a>
+      <a href="{{ url_for('reg') }}" id="skip_nav">create account </a>
       <!--meme nav bar -->
       <nav class="horizontal">
         <a href="{{url_for('hello_world') }}"><img src="{{ url_for('static',filename='images/logo.png') }}" alt="logo" /></a>
         <div class="nav_links_horizontal">
           <ul>
-            <li><a href="{{ url_for('hello_world') }}">Accueil</a></li>
-            <li><a href="{{ url_for('mainpage') }}">Description</a></li>
-            <li><a href="{{ url_for('types') }}">Types</a></li>
-            <li><a href="{{ url_for('log') }}">Recherches</a></li>
-            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+            <li><a href="{{ url_for('hello_world') }}">Main page</a></li>
+            <li><a href="{{ url_for('reverse') }}">Exctracting page</a></li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{url_for('logout_page')}}"> Logout</a> </li>
                 <li><a href="#" style="color: lightcoral"> User: {{ current_user.name }}</a> </li>
+            {% else %}
+                <li><a href="{{ url_for('log') }}">Login page</a></li>
+                <li><a href="{{ url_for('reg') }}">Create Account</a></li>
             {% endif %}
           </ul>
         </div>
       </nav>
     </header>
 
-    <!--
-      container contient les inputs et un h1
-      chaque input a son form
-
-      style pour mettre un petit code css pour bien placer les elements
-    -->
     <div class="container" style="text-align: left">
       {% block content %}
-        <div style="margin-left: 30%">
-        <h1>Veuillez laisser un message</h1>
-        <br />
-        <br />
-      </div>
-
-      <div>
-        <form style="margin-left: 30%">
-          Nom :
-          <input type="text" style="width: 15%" />
-        </form>
-        <br />
-        <form style="margin-left: 30%">
-          Prenom:
-          <input type="text" style="width: 15%" />
-        </form>
-        <br />
-
-        <form style="margin-left: 30%">
-          E-mail:
-          <input type="text" style="width: 15%" />
-        </form>
-
-        <br />
-
-        <div style="display: flex; margin-left: 30%">
-          <p>Message: &nbsp;</p>
-          <textarea name="message" rows="10" style="width: 20%"> </textarea>
-        </div>
-        <br />
-        <br />
-        <br />
-      </div>
       {% endblock %}
     </div>
+    <footer>
+      <h4>About us</h4>
+      <p>Etudiants universitaires USTHB acad B</p>
+      <div class="icon">
+        <a href="https://www.facebook.com/Chrf.Mounir/" target="_blank"
+          ><i class="fa-brands fa-facebook-f"></i
+        ></a>
+        <a href="https://github.com/lolifmaster" target="_blank">
+          <i class="fa-brands fa-github"></i
+        ></a>
+        <a href="https://www.instagram.com/chrf_mounir/" target="_blank"
+          ><i class="fa-brands fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/mounir-charef-3397b1229/"
+          target="_blank"
+        >
+          <i class="fa-brands fa-linkedin-in"></i
+        ></a>
+      </div>
+      <p>made by Charef mounir ©</p>
+    </footer>
+
   </body>
 </html>

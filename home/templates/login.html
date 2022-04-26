@@ -22,6 +22,14 @@
 <br>
 {{ form.submit(style='cursor: pointer;') }}
 
+        {% with messages = get_flashed_messages(with_categories=True)  %}
+            {% if messages %}
+                {% for category,message in messages if not category=='info' %}
+                    <p style="color: {{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
 </form>
 </div>
 {% endblock %}

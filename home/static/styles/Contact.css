@@ -27,6 +27,9 @@ body {
     url(../images/525966.jpg);
   background-size: cover;
   background-position: right;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 
@@ -60,7 +63,6 @@ margin bottom pour faire de l'espace en bas
   align-items: center;
   width: 100%;
   position: fixed;
-  z-index: -1;
   margin-bottom: 50px;
   top: 0;
 }
@@ -137,3 +139,29 @@ margin bottom pour faire de l'espace en bas
   margin-top: 10%;
   margin-left: 10%;
 }
+
+footer {
+  text-align: center;
+  padding-top: 5px;
+  background-color: #f1faee;
+  bottom: 0;
+  margin-top: auto;
+}
+
+footer h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+footer p {
+  color: gray;
+  padding-bottom: 5px;
+}
+footer a{
+  text-decoration: none;
+  color: darkslategray;
+}
+.icon {
+
+  padding-bottom: 7px;
+}
+
