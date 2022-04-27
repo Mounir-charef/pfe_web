@@ -21,9 +21,9 @@
 
 </div>
 <div style="margin-bottom: 1em">
-    {% if msg  %}
+    {% if doctor  %}
         <div>
-            <p> The message you inserted was : {{ msg }} </p>
+            <p style="color: black; background-color: greenyellow; width: fit-content; margin: 1em; padding: 1em" > This image is safe and was given by {{ doctor }} from {{ hospital }}</p>
             <a href="{{ url_for('static',filename='files/'+filename) }}" target="_blank">
             <img alt="Original Image" src="{{ url_for('static',filename='files/'+filename) }}">
             </a>
@@ -31,6 +31,12 @@
                  Download img
             </a>
         </div>
+    {% else %}
+        {% if filename %}
+        <div>
+            <p style="background-color: orangered; width: fit-content; margin: 1em; padding: 1em"> this image was attacked .. its dangerous to use<br> Or you maybe give us the wrong key.</p>
+        </div>
+        {% endif %}
     {% endif %}
 </div>
 {% endblock %}

@@ -31,16 +31,27 @@ def hello_world():
 def reverse():
     form = forms.Extractfield()
     if form.validate_on_submit():
-        leng = form.hashkey.data
-        leng = leng.encode()
-        leng = int(fr.decrypt(leng).decode())
-
         file1 = form.file.data
         filename = secure_filename(file1.filename)
+        leng = form.hashkey.data.encode()
+        try:
+            leng = int(fr.decrypt(leng).decode())
+        except:
+            return render_template("extract.html", form=form, filename=filename)
+
+
         file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
         msg = extract(f"{app.config['UPLOAD_FOLDER']}/{filename}",leng).encode()
-        msg = fr.decrypt(msg).decode()
-        return render_template("extract.html", form=form, msg = msg, filename=filename)
+        try:
+            msg = fr.decrypt(msg).decode()
+        except:
+            return render_template("extract.html", form=form, filename=filename)
+        user = Item.query.filter_by(name=msg).first()
+        if user:
+            fullname = tuple(msg.split('_'))
+            doctor, hospital = fullname
+            return render_template("extract.html", form=form, doctor = doctor, hospital=hospital, filename=filename)
+        return render_template("extract.html", form=form, filename=filename)
     return render_template("extract.html", form=form)
 
 
