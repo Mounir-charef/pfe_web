@@ -18,7 +18,9 @@ def hello_world():
         file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
         Image.open(f"{app.config['UPLOAD_FOLDER']}/{filename}").resize((256,256)).save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
         msg = current_user.name.encode()
-        img, PSNR , leng= Watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}",fr.encrypt(msg).decode())
+        msg = fr.encrypt(msg).decode()
+        print(msg)
+        img, PSNR , leng= Watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}",msg)
         leng = str(leng).encode()
         leng = fr.encrypt(leng).decode()
 
@@ -47,6 +49,7 @@ def reverse():
         except:
             return render_template("extract.html", form=form, filename=filename)
         user = Item.query.filter_by(name=msg).first()
+        print(msg,user)
         if user:
             fullname = tuple(msg.split('_'))
             doctor, hospital = fullname
