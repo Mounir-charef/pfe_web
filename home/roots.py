@@ -1,10 +1,10 @@
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, Response
 from home import app, fr
 from home import forms, db
 from home.items import Item
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
-from home.y import Watermarking, extract
+from home.y import watermarking, extract
 from PIL import Image
 
 @app.route('/',methods=['GET','POST'])
@@ -16,11 +16,10 @@ def hello_world():
         file1 = form.file.data
         filename = secure_filename(file1.filename)
         file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-        Image.open(f"{app.config['UPLOAD_FOLDER']}/{filename}").resize((256,256)).save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
         msg = current_user.name.encode()
         msg = fr.encrypt(msg).decode()
         print(msg)
-        img, PSNR , leng= Watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}",msg)
+        img, PSNR , leng= watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}",msg)
         leng = str(leng).encode()
         leng = fr.encrypt(leng).decode()
 
@@ -53,7 +52,7 @@ def reverse():
         if user:
             fullname = tuple(msg.split('_'))
             doctor, hospital = fullname
-            return render_template("extract.html", form=form, doctor = doctor, hospital=hospital, filename=filename)
+            return render_template("extract.html", form=form, doctor = doctor, hospital=hospital,email=user.email, filename=filename)
         return render_template("extract.html", form=form, filename=filename)
     return render_template("extract.html", form=form)
 
@@ -86,18 +85,18 @@ def reg():
     if form.validate_on_submit():
         user_to_create = Item(name=form.user.data,
                               email=form.email.data,
-                              password_hash = form.pass1.data)
+                              password_hash = form.password.data)
         db.session.add(user_to_create)
         db.session.commit()
         flash(f' Account created with success',category='green')
         login_user(user_to_create)
+        return redirect(url_for('hello_world'))
     if form.errors:
         for key, value in form.errors.items():
-            flash(f'Sorry but {value[0]}', category='red')
+            flash(f'Error in {key}:  {value[0]}', category='red')
 
     users = Item.query.all()
     return render_template('signup.html', form=form,users=users)
-
 
 
 @app.route('/logout')

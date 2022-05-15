@@ -13,6 +13,11 @@
 {{ form.hashkey(placeholder='Enter the key') }}
 <br>
 <br>
+{{ form.Method.label(style='color: #db253d') }}
+{{ form.Method() }}
+<br>
+<br>
+
 {{ form.submit(style='cursor: pointer;') }}
 
 </form>
@@ -23,9 +28,9 @@
 <div style="margin-bottom: 1em">
     {% if doctor  %}
         <div>
-            <p style="color: black; background-color: greenyellow; width: fit-content; margin: 1em; padding: 1em" > This image is safe and was given by {{ doctor }} from {{ hospital }}</p>
+            <p style="color: black; background-color: greenyellow; width: fit-content; margin: 1em; padding: 1em" > This image is safe and was given by {{ doctor }} from {{ hospital }}<br> <a href = "mailto:{{ email }}">Contact Doctor</a></p>
             <a href="{{ url_for('static',filename='files/'+filename) }}" target="_blank">
-            <img alt="Original Image" src="{{ url_for('static',filename='files/'+filename) }}">
+            <img alt="Original Image" src="{{ url_for('static',filename='files/'+filename) }}" height="256" width="256">
             </a>
             <a style="color: cyan;margin-left: 40px;text-decoration: none" href="{{ url_for('static',filename='files/'+filename) }}" download={{ filename }}>
                  Download img

@@ -20,11 +20,7 @@ image de fond avec un linear gradient rgba pour mettre l'opacité a 0.9
 la taille position du background et du header  
 */
 body {
-  background-image: linear-gradient(
-      rgba(17, 31, 91, 0.9),
-      rgba(17, 31, 91, 0.9)
-    ),
-    url(../images/525966.jpg);
+  background: linear-gradient(45deg, #2f74ff, #1eff9a);
   background-size: cover;
   background-position: right;
   display: flex;
@@ -56,7 +52,6 @@ z-indexe 100 pour qu'elle soit toujour au premier plan
 margin bottom pour faire de l'espace en bas 
 */
 .horizontal {
-  background-color: #0c2454;
   display: flex;
   padding: 0.5% 0;
   justify-content: space-between;

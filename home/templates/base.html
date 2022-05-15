@@ -31,7 +31,7 @@
             <li><a href="{{ url_for('reverse') }}">Exctracting page</a></li>
             {% if current_user.is_authenticated %}
                 <li><a href="{{url_for('logout_page')}}"> Logout</a> </li>
-                <li><a href="#" style="color: lightcoral"> User: {{ current_user.name }}</a> </li>
+                <li><a href="#" style="color: #ff4343"> User: {{ current_user.name }}</a> </li>
             {% else %}
                 <li><a href="{{ url_for('log') }}">Login page</a></li>
                 <li><a href="{{ url_for('reg') }}">Create Account</a></li>

@@ -7,6 +7,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SECRET_KEY'] = 'ec9439cfc6c796ae2029594d'
 app.config['UPLOAD_FOLDER'] = 'home/static/files'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 db = SQLAlchemy(app)
 bcrypt=Bcrypt(app)
 login_manager = LoginManager(app)
