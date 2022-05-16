@@ -1,6 +1,6 @@
 from home.dct import *
 from home.ap import split, toBinary
-
+import cv2
 quantTable = np.array([
     [16, 11, 10, 16, 24, 40, 51, 61],
     [12, 12, 14, 19, 26, 58, 60, 55],
@@ -24,7 +24,7 @@ def extract(file_name, leng):
     h = height // block_size
     w = width // block_size
     arr = np.array(img)
-    arr = rgb2ycbcr(arr)
+    arr = cv2.cvtColor(arr, cv2.COLOR_BGR2YCrCb)
     padded_img = np.zeros((height, width), dtype='int16')
     padded_img[0:height, 0:width] = arr[0:height, 0:width, 0]
     for i in range(h):
@@ -64,7 +64,7 @@ def watermarking(file_name, message):
     w = width // block_size
     arr = np.array(img)
     nrr = arr.copy()
-    arr = rgb2ycbcr(arr)
+    arr = cv2.cvtColor(arr, cv2.COLOR_BGR2YCrCb)
     padded_img = np.zeros((height, width), dtype='int16')
     padded_img[0:height, 0:width] = arr[0:height, 0:width, 0]
     for i in range(h):
@@ -92,7 +92,7 @@ def watermarking(file_name, message):
     for i in range(height):
         for j in range(width):
             arr[i, j, 0] = padded_img[i, j]
-    arr = ycbcr2rgb(arr)
+    arr = cv2.cvtColor(arr, cv2.COLOR_YCR_CB2BGR)
     img = Image.fromarray(arr, 'RGB')
     return img, PSNR(nrr, arr), leng
 
