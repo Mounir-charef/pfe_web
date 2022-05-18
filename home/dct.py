@@ -227,26 +227,16 @@ def ycbcr2rgb(im):
 
 
 def insert(input, msg):
-    num = abs(input[15])
+    num = abs(input[3])
     binary = bin(num)[2:-1]
     binary += msg.pop(0)
     num = int(binary, 2)
-    if (input[15] < 0):
+    if (input[3] < 0):
         num = -num
-    input[15] = num
+    input[3] = num
     return input
 
 
-def get(input):
-    ret = bin(input[0])[-1]
-    return ret
-
-
-def print_image_from_array(image_array):
-    image_array_copy = image_array.clip(0, 255)
-    image_array_copy = image_array_copy.astype("uint8")
-    img = Image.fromarray(image_array_copy, 'YCbCr')
-    img.show()
 
 
 def PSNR(original, compressed):

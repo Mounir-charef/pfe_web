@@ -20,30 +20,30 @@ def extract(file_name, leng):
     width, height = (256,256)
     width -= width % 8
     height -= height % 8
-    block_size = 8
-    h = height // block_size
-    w = width // block_size
+    BLOCK_SIZE = 8
+    h = height // BLOCK_SIZE
+    w = width // BLOCK_SIZE
     arr = np.array(img)
-    arr = cv2.cvtColor(arr, cv2.COLOR_BGR2YCrCb)
+    arr = cv2.cvtColor(arr, cv2.COLOR_RGB2YCrCb)
     padded_img = np.zeros((height, width), dtype='int16')
     padded_img[0:height, 0:width] = arr[0:height, 0:width, 0]
     for i in range(h):
-        row_ind_1 = i * block_size
-        row_ind_2 = row_ind_1 + block_size
+        row_ind_1 = i * BLOCK_SIZE
+        row_ind_2 = row_ind_1 + BLOCK_SIZE
 
         for j in range(w):
             if not leng:
                 break
             leng -= 1
-            col_ind_1 = j * block_size
-            col_ind_2 = col_ind_1 + block_size
+            col_ind_1 = j * BLOCK_SIZE
+            col_ind_2 = col_ind_1 + BLOCK_SIZE
             block = padded_img[row_ind_1: row_ind_2, col_ind_1: col_ind_2].astype('float32')
             block -= 128
             block = dct(block)
             block = np.divide(block, quantTable)
             block = np.round(block)
             zig = np.int16(zigzag(block))
-            msg += bin(zig[15])[-1]
+            msg += bin(zig[3])[-1]
     msg = [msg[i:i + 8] for i in range(0, len(msg), 8)]
     msg = text(msg)
     print(msg)
@@ -59,22 +59,22 @@ def watermarking(file_name, message):
     width, height = (256,256)
     width -= width % 8
     height -= height % 8
-    block_size = 8
-    h = height // block_size
-    w = width // block_size
+    BLOCK_SIZE = 8
+    h = height // BLOCK_SIZE
+    w = width // BLOCK_SIZE
     arr = np.array(img)
     nrr = arr.copy()
-    arr = cv2.cvtColor(arr, cv2.COLOR_BGR2YCrCb)
+    arr = cv2.cvtColor(arr, cv2.COLOR_RGB2YCrCb)
     padded_img = np.zeros((height, width), dtype='int16')
     padded_img[0:height, 0:width] = arr[0:height, 0:width, 0]
     for i in range(h):
 
-        row_ind_1 = i * block_size
-        row_ind_2 = row_ind_1 + block_size
+        row_ind_1 = i * BLOCK_SIZE
+        row_ind_2 = row_ind_1 + BLOCK_SIZE
 
         for j in range(w):
-            col_ind_1 = j * block_size
-            col_ind_2 = col_ind_1 + block_size
+            col_ind_1 = j * BLOCK_SIZE
+            col_ind_2 = col_ind_1 + BLOCK_SIZE
             block = padded_img[row_ind_1: row_ind_2, col_ind_1: col_ind_2].astype('float32')
             block -= 128
             block = dct(block)
@@ -92,7 +92,7 @@ def watermarking(file_name, message):
     for i in range(height):
         for j in range(width):
             arr[i, j, 0] = padded_img[i, j]
-    arr = cv2.cvtColor(arr, cv2.COLOR_YCR_CB2BGR)
+    arr = cv2.cvtColor(arr, cv2.COLOR_YCR_CB2RGB)
     img = Image.fromarray(arr, 'RGB')
     return img, PSNR(nrr, arr), leng
 
