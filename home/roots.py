@@ -5,7 +5,7 @@ from home.items import Item
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from home.y import watermarking, extract
-from PIL import Image
+from home.LSB import LsbWatermark,LsbExtract
 
 @app.route('/',methods=['GET','POST'])
 @app.route('/home',methods=['GET','POST'])
@@ -13,18 +13,42 @@ from PIL import Image
 def hello_world():
     form = forms.Uploadfield()
     if form.validate_on_submit():
-        file1 = form.file.data
-        filename = secure_filename(file1.filename)
-        file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-        msg = current_user.name.encode()
-        msg = fr.encrypt(msg).decode()
-        print(msg)
-        img, PSNR , leng= watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}",msg)
-        leng = str(leng).encode()
-        leng = fr.encrypt(leng).decode()
+        if(form.Method.data == 1):
+            file1 = form.file.data
+            filename = secure_filename(file1.filename)
+            file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+            msg = current_user.name.encode()
+            msg = fr.encrypt(msg).decode()
+            print(msg)
+            try:
+                img, PSNR, MSE, leng = watermarking(f"{app.config['UPLOAD_FOLDER']}/{filename}", msg)
+            except Exception:
+                flash(f' Image can\'t be watermarked please check: Image size: 256x256 and bigger ,  filetype:PNG ',
+                      category='red')
+                return render_template("upload.html", form=form)
+            leng = str(leng).encode()
+            leng = fr.encrypt(leng).decode()
 
-        img.save(f"{app.config['UPLOAD_FOLDER']}/watermarked_{filename}")
-        return render_template("upload.html", form=form, filename=filename, PSNR=PSNR, leng=leng)
+            img.save(f"{app.config['UPLOAD_FOLDER']}/watermarked_{filename}",format='PNG')
+            return render_template("upload.html", form=form, filename=filename, PSNR=PSNR, MSE=MSE, leng=leng)
+        else:
+            file1 = form.file.data
+            filename = secure_filename(file1.filename)
+            file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+            msg = current_user.name.encode()
+            msg = fr.encrypt(msg).decode()
+            print(msg)
+            try:
+                img, leng, PSNR, MSE = LsbWatermark(f"{app.config['UPLOAD_FOLDER']}/{filename}", msg)
+            except Exception:
+                flash(f' Image can\'t be watermarked please check: Image size: 256x256 and bigger ,  filetype:PNG ',
+                      category='red')
+                return render_template("upload.html", form=form)
+            leng = str(leng).encode()
+            leng = fr.encrypt(leng).decode()
+
+            img.save(f"{app.config['UPLOAD_FOLDER']}/watermarked_{filename}")
+            return render_template("upload.html", form=form, filename=filename, PSNR=PSNR, MSE=MSE, leng=leng)
     return render_template("upload.html", form=form)
 
 
@@ -32,28 +56,58 @@ def hello_world():
 def reverse():
     form = forms.Extractfield()
     if form.validate_on_submit():
-        file1 = form.file.data
-        filename = secure_filename(file1.filename)
-        leng = form.hashkey.data.encode()
-        try:
-            leng = int(fr.decrypt(leng).decode())
-        except:
-            return render_template("extract.html", form=form, filename=filename)
+        if(form.Method.data == 1):
+            file1 = form.file.data
+            filename = secure_filename(file1.filename)
+            leng = form.hashkey.data.encode()
+            try:
+                leng = int(fr.decrypt(leng).decode())
+            except:
+                return render_template("extract.html", form=form, filename=filename)
 
-
-        file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-        msg = extract(f"{app.config['UPLOAD_FOLDER']}/{filename}",leng).encode()
-        try:
-            msg = fr.decrypt(msg).decode()
-        except:
+            file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+            try:
+                msg = extract(f"{app.config['UPLOAD_FOLDER']}/{filename}", leng).encode()
+            except:
+                return render_template("extract.html", form=form, filename=filename)
+            try:
+                msg = fr.decrypt(msg).decode()
+            except:
+                return render_template("extract.html", form=form, filename=filename)
+            user = Item.query.filter_by(name=msg).first()
+            print(msg, user)
+            if user:
+                fullname = tuple(msg.split('_'))
+                doctor, hospital = fullname
+                return render_template("extract.html", form=form, doctor=doctor, hospital=hospital, email=user.email,
+                                       filename=filename)
             return render_template("extract.html", form=form, filename=filename)
-        user = Item.query.filter_by(name=msg).first()
-        print(msg,user)
-        if user:
-            fullname = tuple(msg.split('_'))
-            doctor, hospital = fullname
-            return render_template("extract.html", form=form, doctor = doctor, hospital=hospital,email=user.email, filename=filename)
-        return render_template("extract.html", form=form, filename=filename)
+        else:
+            file1 = form.file.data
+            filename = secure_filename(file1.filename)
+            leng = form.hashkey.data.encode()
+            try:
+                leng = int(fr.decrypt(leng).decode())
+            except:
+                return render_template("extract.html", form=form, filename=filename)
+
+            file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
+            try:
+                msg = LsbExtract(f"{app.config['UPLOAD_FOLDER']}/{filename}", leng).encode()
+            except:
+                return render_template("extract.html", form=form, filename=filename)
+            try:
+                msg = fr.decrypt(msg).decode()
+            except:
+                return render_template("extract.html", form=form, filename=filename)
+            user = Item.query.filter_by(name=msg).first()
+            print(msg, user)
+            if user:
+                fullname = tuple(msg.split('_'))
+                doctor, hospital = fullname
+                return render_template("extract.html", form=form, doctor=doctor, hospital=hospital, email=user.email,
+                                       filename=filename)
+            return render_template("extract.html", form=form, filename=filename)
     return render_template("extract.html", form=form)
 
 

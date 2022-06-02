@@ -245,4 +245,4 @@ def PSNR(original, compressed):
         return 100
     max_pixel = 255.0
     psnr = 20 * math.log10(max_pixel / math.sqrt(mse))
-    return psnr
+    return psnr, mse

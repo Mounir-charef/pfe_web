@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Working Page {% endblock %}
 {% block content %}
-    <h1 style="text-align: center"> WATERMARK MEDICAL IMAGES USING DCT</h1>
+    <h1 style="text-align: center"> WATERMARK MEDICAL IMAGE </h1>
 <br>
 <br>
 <div>
@@ -12,15 +12,24 @@
 {{ form.file(accept="image/png") }}
 <br>
 <br>
-{{ form.Method.label(style='color: #db253d') }}
 {{ form.Method() }}
 <br>
 <br>
 {{ form.submit(style='cursor: pointer;') }}
+<br>
 
+        {% with messages = get_flashed_messages(with_categories=True)  %}
+            {% if messages %}
+                {% for category,message in messages if not category=='info' %}
+                    <p style="color: {{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 </form>
 <br>
 <br>
+
+
 
 </div>
 <div>
@@ -46,6 +55,7 @@
         </div>
         <br>
         <p> The PSNR IS :  {{ PSNR }} </p>
+        <p> The MSE IS :  {{ MSE }} </p>
         <label style="color: cyan;margin-left: 40px;" for="myInput"> Your key (Must save) is :  </label>
         <input  type="text" value="{{ leng }}" id="myInput" name="length">
 
