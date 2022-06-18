@@ -10,7 +10,7 @@
 {{ form.file.label() }}
 {{ form.file(accept="image/png") }}
 {{ form.hashkey.label() }}
-{{ form.hashkey(placeholder='Enter the key') }}
+{{ form.hashkey(placeholder='Enter the key',autocomplete='off') }}
 <br>
 <br>
 {{ form.Method.label(style='color: #db253d') }}
@@ -39,7 +39,7 @@
     {% else %}
         {% if filename %}
         <div>
-            <p style="background-color: orangered; width: fit-content; margin: 1em; padding: 1em"> this image was attacked .. its dangerous to use<br> Or you maybe give us the wrong key.</p>
+            <p style="background-color: orangered; width: fit-content; margin: 1em; padding: 1em"> this image either has been attacked or you provided the wrong key.</p>
         </div>
         {% endif %}
     {% endif %}

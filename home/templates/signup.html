@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container" style="text-align: left; margin-top: 0%">
       <div style="margin-left: 30%">
-        <h1>give us a way to contect u king</h1>
+        <h1> Sign in page </h1>
         <br />
         <br />
       </div>
@@ -12,7 +12,7 @@
          <form method="POST" class="form-register" style="color:whitesmoke">
             {{ form.hidden_tag() }}
              {{ form.user.label() }}
-             {{ form.user(placeholder=' Username') }}
+             {{ form.user(placeholder=' Username',autofocus=True) }}
              <br>
              <br>
              {{ form.email.label() }}

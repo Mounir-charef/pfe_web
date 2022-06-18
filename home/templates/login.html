@@ -8,7 +8,7 @@
 <form method="post" style="color: snow;justify-content: center;align-items: center;">
 {{ form.hidden_tag() }}
 {{ form.username.label() }}
-{{ form.username(placeholder=' Enter your username') }}
+{{ form.username(placeholder=' Enter your username',autofocus=True) }}
 <br>
 <br>
 {{ form.password.label() }}

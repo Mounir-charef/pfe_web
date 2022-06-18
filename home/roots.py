@@ -1,11 +1,13 @@
 from flask import render_template, redirect, url_for, flash, request, Response
-from home import app, fr
-from home import forms, db
+from home import app, fr, forms, db, mail
 from home.items import Item
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 from home.y import watermarking, extract
 from home.LSB import LsbWatermark,LsbExtract
+from flask_mail import Message
+import os
+import traceback
 
 @app.route('/',methods=['GET','POST'])
 @app.route('/home',methods=['GET','POST'])
@@ -62,15 +64,8 @@ def reverse():
             leng = form.hashkey.data.encode()
             try:
                 leng = int(fr.decrypt(leng).decode())
-            except:
-                return render_template("extract.html", form=form, filename=filename)
-
-            file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-            try:
+                file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
                 msg = extract(f"{app.config['UPLOAD_FOLDER']}/{filename}", leng).encode()
-            except:
-                return render_template("extract.html", form=form, filename=filename)
-            try:
                 msg = fr.decrypt(msg).decode()
             except:
                 return render_template("extract.html", form=form, filename=filename)
@@ -88,18 +83,12 @@ def reverse():
             leng = form.hashkey.data.encode()
             try:
                 leng = int(fr.decrypt(leng).decode())
-            except:
-                return render_template("extract.html", form=form, filename=filename)
-
-            file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
-            try:
+                file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
                 msg = LsbExtract(f"{app.config['UPLOAD_FOLDER']}/{filename}", leng).encode()
-            except:
-                return render_template("extract.html", form=form, filename=filename)
-            try:
                 msg = fr.decrypt(msg).decode()
             except:
                 return render_template("extract.html", form=form, filename=filename)
+
             user = Item.query.filter_by(name=msg).first()
             print(msg, user)
             if user:
@@ -132,7 +121,6 @@ def log():
     return render_template('login.html', form=form)
 
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def reg():
     form = forms.Registerfield()
@@ -142,6 +130,13 @@ def reg():
                               password_hash = form.password.data)
         db.session.add(user_to_create)
         db.session.commit()
+        try:
+            msg = Message('PFE_I_ACAD81', sender=os.environ.get('MAIL_DEFAULT_USER'), recipients=[user_to_create.email])
+            msg.body= 'Hello your account is successfully created in USTHB PFE ACAD I81'
+            mail.send(msg)
+        except Exception:
+            print(traceback.format_exc())
+            flash("Email failed to send",category='red')
         flash(f' Account created with success',category='green')
         login_user(user_to_create)
         return redirect(url_for('hello_world'))

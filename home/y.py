@@ -50,6 +50,8 @@ def extract(file_name, leng):
 
 
 def watermarking(file_name, message):
+    if(not file_name.endswith('.png')):
+        raise Exception
     img = Image.open(file_name).convert('RGB')
     if(img.size[0]<256 or img.size[1]<256):
         raise Exception
