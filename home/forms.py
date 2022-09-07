@@ -12,7 +12,7 @@ class Registerfield(FlaskForm):
             raise ValidationError('USER ALREADY EXISTS')
         x = re.search(r"^[A-Z][A-Za-z0-9]+_[A-Z][A-Za-z0-9]+$", user_to_check.data)
         if not x:
-            raise ValidationError('Name has to be in form of: Name_Hospital')
+            raise ValidationError('Name has to be in form of: Name_Hospital (First character in uppercase, Only alphanumirical values allowed)')
 
     user = StringField(label='Name_Company', validators=[Length(min=8, max=35), DataRequired()])
     email = EmailField(label='Email', validators=[Email(),DataRequired()])

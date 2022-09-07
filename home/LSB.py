@@ -1,12 +1,10 @@
-from PIL import Image
 from home.ap import *
 import numpy as np
 from home.dct import PSNR
 
+
 def LsbWatermark(filename, name):
-    img = Image.open(filename).convert('RGB')
-    if(img.size[0]<256 or img.size[1]<256):
-        raise Exception("Image too small for watermarking")
+    img = CheckFile(filename)
     value = split(toBinary(name))
     leng = len(value)
     width, height = img.size
@@ -14,7 +12,7 @@ def LsbWatermark(filename, name):
     arr = pmap.copy()
     for i in range(width):
         for j in range(height):
-            if (not value):
+            if not value:
                 break
             msg = value.pop(0)
             r, g, b = pmap[i, j]
@@ -24,7 +22,6 @@ def LsbWatermark(filename, name):
             pmap[i, j, 0] = nr
     img = Image.fromarray(pmap)
     psnr, mse = PSNR(arr, pmap)
-    print(psnr, mse)
     return img, leng, psnr, mse
 
 
@@ -35,12 +32,12 @@ def LsbExtract(filename, leng):
     msg = []
     for i in range(width):
         for j in range(height):
-            if (leng == 0):
+            if not leng:
                 break
             leng = leng - 1
             r, g, b = pmap[i, j]
             r = bin(r)[2:]
-            if (len(r) > 1):
+            if len(r) > 1:
                 r = r[-2:]
             else:
                 r = '0' + r
@@ -50,5 +47,4 @@ def LsbExtract(filename, leng):
 
 
 if __name__ == '__main__':
-    print('wrong file')
-
+    exit('wrong file')

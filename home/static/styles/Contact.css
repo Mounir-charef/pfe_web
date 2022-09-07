@@ -39,18 +39,6 @@ form{
   color: #fff;
 }
 
-/*barre de navigation */
-
-/*on met en place ici : 
-couleur de fond de la barre de navigation 
-on met un display flex pour que les elements soit en lignes 
-justify content space between pour que il y ai de l'espace entre les elements du nav ( icons et ul ) 
-on met les items de la nav barre au centre 
-width 100% pour qu'elle prenne toute la largeure de l'ecran
-position fixed pour quelle bouge avec l'ecaran
-z-indexe 100 pour qu'elle soit toujour au premier plan 
-margin bottom pour faire de l'espace en bas 
-*/
 .horizontal {
   display: flex;
   padding: 0.5% 0;
@@ -61,8 +49,6 @@ margin bottom pour faire de l'espace en bas
   margin-bottom: 50px;
   top: 0;
 }
-
-/*on met en place l'image AI avec unpeu d'espace a gauche et gerer sa taille*/
 
 .horizontal img {
   margin-left: 40px;
