@@ -8,9 +8,10 @@ from home.LSB import LsbWatermark, LsbExtract
 from flask_mail import Message
 import os
 
-#Les routes de l'application
 
-#La page Main de TATOUAGE
+# Les routes de l'application
+
+# La page Main de TATOUAGE
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 @login_required
@@ -54,7 +55,7 @@ def hello_world():
     return render_template("upload.html", form=form)
 
 
-#La page d'extraction
+# La page d'extraction
 @app.route('/extract', methods=['GET', 'POST'])
 def reverse():
     form = forms.Extractfield()
@@ -68,7 +69,7 @@ def reverse():
                 file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
                 msg = extract(f"{app.config['UPLOAD_FOLDER']}/{filename}", leng).encode()
                 msg = fr.decrypt(msg).decode()
-            except:
+            except Exception:
                 return render_template("extract.html", form=form, filename=filename)
             user = Item.query.filter_by(name=msg).first()
             if user:
@@ -86,7 +87,7 @@ def reverse():
                 file1.save(f"{app.config['UPLOAD_FOLDER']}/{filename}")
                 msg = LsbExtract(f"{app.config['UPLOAD_FOLDER']}/{filename}", leng).encode()
                 msg = fr.decrypt(msg).decode()
-            except:
+            except Exception:
                 return render_template("extract.html", form=form, filename=filename)
 
             user = Item.query.filter_by(name=msg).first()
@@ -99,7 +100,7 @@ def reverse():
     return render_template("extract.html", form=form)
 
 
-#La page LOGIN
+# La page LOGIN
 @app.route('/login', methods=['GET', 'POST'])
 def log():
     if current_user.is_authenticated:
@@ -119,7 +120,8 @@ def log():
 
     return render_template('login.html', form=form)
 
-#La page SIGN IN
+
+# La page SIGN IN
 @app.route('/register', methods=['GET', 'POST'])
 def reg():
     form = forms.Registerfield()
@@ -145,7 +147,8 @@ def reg():
     users = Item.query.all()
     return render_template('signup.html', form=form, users=users)
 
-#logout manager
+
+# logout manager
 @app.route('/logout')
 def logout_page():
     logout_user()
