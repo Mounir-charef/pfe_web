@@ -4,17 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&family=Poppins:wght@700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/Contact.css') }}"/>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    />
     <title>{% block title %}{% endblock %}</title>
   </head>
 
@@ -41,10 +31,10 @@
       </nav>
     </header>
 
-    <div class="container" style="text-align: left">
+    <main class="container" style="text-align: left">
       {% block content %}
       {% endblock %}
-    </div>
+    </main>
     <footer>
       <h4>About us</h4>
       <p>Etudiants universitaires USTHB acad B</p>

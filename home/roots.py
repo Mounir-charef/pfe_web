@@ -3,7 +3,7 @@ from home import app, fr, forms, db, mail
 from home.items import Item
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
-from home.y import watermarking, extract
+from home.encoder import watermarking, extract
 from home.LSB import LsbWatermark, LsbExtract
 from flask_mail import Message
 import os

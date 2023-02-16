@@ -1,9 +1,7 @@
 /*scroll behavior  sert a rendre
  plus beau quand il y'a un scroll 
  */
-html {
-  scroll-behavior: smooth;
-}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap');
 
 /* on met en place : 
 tout est sans marge et padding
@@ -12,7 +10,8 @@ le type de font importé de google
 * {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Quicksand', sans-serif;
+
 }
 
 /*ici on met en place : 
@@ -60,6 +59,7 @@ form{
 .nav_links_horizontal {
   flex: 1;
   text-align: right;
+  color: red;
 }
 
 /*on enleve la decoration de base des li 
